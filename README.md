@@ -13,7 +13,7 @@
 ## 简介
 
 本项目是我的本硕贯通课程《计算机视觉》的期末大作业，作业内容是参加[图像分类挑战赛](https://www.kaggle.com/competitions/dlut-cv-project-2023-image-classification)并获得分数。本项目的模型获得了竞赛的第4名，测试集Public精度为68.758%，Private精度为69.540%。
-本项目训练了3个标准模型和4个轻量级模型，挑战赛只能提交轻量级模型的结果。下表列出了各个模型的测试集精度以及模型的参数量和计算量。权重文件可[在百度网盘下载](https://pan.baidu.com/s/1qYJeqftS_35cd3iy7kf7Fg)，提取码为学校校庆日（4位数字，如2月14日为0214）
+本项目训练了3个标准模型和4个轻量级模型，挑战赛只能提交轻量级模型的结果。下表列出了各个模型的测试集精度以及模型的参数量和计算量。权重文件可在[百度网盘](https://pan.baidu.com/s/1qYJeqftS_35cd3iy7kf7Fg)下载，提取码为学校校庆日（4位数字，如2月14日为0214）。
 
 | Model               | Public score | Private score | Parameters |   FLOPs   |
 |:--------------------|:------------:|:-------------:|:----------:|:---------:|
@@ -63,7 +63,7 @@ DutImageClassification
 
 ## 环境配置
 
-先通过以下命令克隆本项目
+先通过以下命令克隆本项目：
 
 ```shell
 git clone https://github.com/Yue-0/DutImageClassification.git
@@ -72,33 +72,47 @@ cd ./DutImageClassification
 
 本项目的解释器要求Python>=3.8，因为部分代码使用了海象运算符，所以3.8以前的Python版本不能运行本项目。
 
-本项目的依赖库列表在[requirements](requirements.txt)中列出，包括
+本项目的依赖库列表在[requirements](requirements.txt)中列出，包括：
 
-* thop >= 0.1.1
+* Thop >= 0.1.1
 * NumPy >= 1.23.5
 * OpenCV >= 4.5.5
 * PyTorch >= 1.13.0
 * PaddleHub >= 2.3.1
 * TorchVision >= 0.14.0
 
-项目对各个依赖库的版本没有太严格的要求，不要太旧即可,上面列出的是我使用的版本。
-使用以下命令一键安装依赖库
+项目对各个依赖库的版本没有太严格的要求，不要太旧即可，上面列出的是我使用的版本。
+使用以下命令一键安装依赖库：
 
 ```shell
 pip install -r requirements.txt
 ```
 
-paddlehub可能需要依赖PaddlePaddle，如果安装失败，请先[安装对应版本的PaddlePaddle](https://paddlepaddle.org.cn)。**如果你不需要从零开始复现我的结果，则无需安装PaddleHub。**
+PaddleHub可能需要依赖PaddlePaddle，如果安装失败，请先[安装对应版本的PaddlePaddle](https://paddlepaddle.org.cn)。**如果你不需要从零开始复现我的结果，则无需安装PaddleHub。**
 
 ## 快速复现
 
-* 本项目只提供在Linux系统下的复现方案，不保证在Windows系统下能正常运行
-* 本项目在PyCharm和VsCode等编辑器中运行时可能存在进度条异常的情况，建议在终端运行
-* 以下所有命令都在DutImageClassification目录下运行
+* 本项目只提供在Linux系统下的复现方案，不保证在Windows系统下能正常运行；
+* 本项目在PyCharm和VsCode等编辑器中运行时可能存在进度条异常的情况，建议在终端运行；
+* 以下所有命令都在DutImageClassification目录下运行。
 
-### 1.下载训练好的权重
+### 1.准备测试数据集
 
-训练好的模型权重在[百度网盘](https://pan.baidu.com/s/1qYJeqftS_35cd3iy7kf7Fg)中，提取码为学校校庆日（4位数字，如2月14日为0214）。下载好压缩包后，解压到models文件夹中，覆盖weights文件夹。解压后的weights文件夹应具有如下结构
+将竞赛数据集的测试集文件夹（test文件夹）拷贝到data文件夹下，保证data文件夹具有如下结构：
+
+```
+data
+├── test
+    ├── xxx.jpg
+    ├── ...
+    └── xxx.jpg
+├── __init__.py
+└── convert.py
+```
+
+### 2.下载训练好的权重
+
+训练好的模型权重在[百度网盘](https://pan.baidu.com/s/1qYJeqftS_35cd3iy7kf7Fg)中，提取码为学校校庆日（4位数字，如2月14日为0214）。下载好压缩包后，解压到models文件夹中，覆盖weights文件夹。解压后的weights文件夹应具有如下结构：
 
 ```
 weights
@@ -120,7 +134,7 @@ weights
         └── best.pt
 ```
 
-### 2.生成csv预测结果文件
+### 3.生成csv预测结果文件
 
 使用以下指令生成用于提交到竞赛服务器的结果文件，生成的文件在results/students/result.csv
 
@@ -154,7 +168,7 @@ models/weights/teachers/SwinTransformerT/best.pt \
 
 ## 从零开始
 
-本项目提供了完整的从零开始复现的脚本， 首先请将竞赛数据集拷贝到data文件夹下，保证data文件夹具有如下结构
+本项目提供了完整的从零开始复现的脚本， 首先请将竞赛数据集拷贝到data文件夹下，保证data文件夹具有如下结构：
 
 ```
 data
@@ -184,7 +198,7 @@ data
 └── convert.py
 ```
 
-然后在DutImageClassification目录下使用以下命令即可一键从零开始复现我的结果
+然后在DutImageClassification目录下使用以下命令即可一键从零开始复现我的结果：
 
 ```shell
 bash main.sh
@@ -192,11 +206,11 @@ bash main.sh
 
 ## 使用说明
 
-本项目提供了一些脚本，用于实现一些特定的功能
+本项目提供了一些脚本，用于实现一些特定的功能。
 
 ### 1.查看轻量级模型的参数量和计算量
 
-本项目一共定义了四个轻量级模型，它们分别具有ResNet、RepVGG、ConvNeXt和SwinTransformer的结构，使用以下命令查看各个轻量级模型的参数量和计算量
+本项目一共定义了四个轻量级模型，它们分别具有ResNet、RepVGG、ConvNeXt和SwinTransformer的结构，使用以下命令查看各个轻量级模型的参数量和计算量：
 
 ```
 python models/resnet.py
@@ -210,7 +224,7 @@ python models/resnet.py
 
 ### 2.风格转换
 
-本项目单独实现了用于风格转换的脚本，需要把数据构建成如下形式
+本项目单独实现了用于风格转换的脚本，需要把数据构建成如下形式：
 
 ```
 path_to_images
@@ -230,24 +244,24 @@ path_to_images
     └── xxx
 ```
 
-然后，使用以下命令进行风格转换
+然后，使用以下命令进行风格转换：
 
 ```shell
 python data/convert.py path/to/images
 ```
 
-转换完毕后，会在图像目录下生成三个文件夹，分别存放动漫风格、素描风格和梵高油画风格的图像，每个文件夹的结构都与原图像文件夹的结构相同
+转换完毕后，会在图像目录下生成三个文件夹，分别存放动漫风格、素描风格和梵高油画风格的图像，每个文件夹的结构都与原图像文件夹的结构相同。
 
 ### 3.训练模型
 
-[train.py](train.py)是模型训练脚本，通过终端命令可以训练指定的模型。例如，下面的命令用于训练一个ResNet-50，数据集路径为data，权重文件保存在models/weights/teachers/ResNet50下，会保存best.pt和last.pt两个权重文件，分别表示验证集精度最高的权重和最后一次训练后保存的权重
+[train.py](train.py)是模型训练脚本，通过终端命令可以训练指定的模型。例如，下面的命令用于训练一个ResNet-50，数据集路径为data，权重文件保存在models/weights/teachers/ResNet50下，会保存best.pt和last.pt两个权重文件，分别表示验证集精度最高的权重和最后一次训练后保存的权重：
 
 ```shell
 python train.py --save=models/weights/teachers/ResNet50 --data=data --model=ResNet50 \
 --epochs=120 --lr=1e-1 --batch_size=256 --weight_decay=1e-4 --warmup=0
 ```
 
-下面的命令用于从某权重文件中加载参数继续训练
+下面的命令用于从某权重文件中加载参数继续训练：
 
 ```shell
 python train.py --save=models/weights/teachers/ResNet50 --data=data --model=ResNet50 \
@@ -255,7 +269,7 @@ python train.py --save=models/weights/teachers/ResNet50 --data=data --model=ResN
 --pretrained=models/weights/teachers/ResNet50/last.pt
 ```
 
-下面的命令用于使用训练好的ResNet-50蒸馏RepVGG
+下面的命令用于使用训练好的ResNet-50蒸馏RepVGG：
 
 ```shell
 python train.py --save=models/weights/students/RepVgg --data=data --model=RepVgg \
@@ -263,9 +277,9 @@ python train.py --save=models/weights/students/RepVgg --data=data --model=RepVgg
 --method=distillation --teacher=ResNet50 --teacher_weights=models/weights/teachers/ResNet50/best.pt
 ```
 
-下表列出了train.py的所有命令行参数
+下表列出了train.py的所有命令行参数：
 
-| 参数名               |  类型   |  默认值  | 说明                                                       |
+| 参数名               |  类型   |  默认   | 说明                                                       |
 |:------------------|:-----:|:-----:|:---------------------------------------------------------|
 | --save            | Path  |   -   | 权重保存的路径                                                  |
 | --data            | Path  |   -   | 数据集路径                                                    |
@@ -296,7 +310,7 @@ python train.py --save=models/weights/students/RepVgg --data=data --model=RepVgg
 * SwinTransformerV2T
 * SwinTransformerV2N
 
-以上名称区别大小写，目前仅支持以上7个模型名称
+以上名称区别大小写，目前仅支持以上7个模型名称。
 
 ### 4.验证
 
@@ -309,7 +323,7 @@ python data/convert.py path/to/data
 ```
 
 执行完风格转换后，可以进行模型验证。验证集是经过数据增强后的验证集，具体细节在我的[技术报告](docs/report.pdf)中说明。
-下面的命令用于验证训练好的ResNet-50，数据集路径为data，权重文件为在models/weights/teachers/ResNet50/best.pt
+下面的命令用于验证训练好的ResNet-50，数据集路径为data，权重文件为在models/weights/teachers/ResNet50/best.pt：
 
 ```shell
 python val.py --data=data --model=ResNet50 --weights=models/weights/teachers/ResNet50/best.pt
@@ -317,7 +331,7 @@ python val.py --data=data --model=ResNet50 --weights=models/weights/teachers/Res
 
 程序执行结束后，会输出模型的验证集精度，以及模型的参数量和计算量。
 
-下表列出了val.py的所有命令行参数
+下表列出了val.py的所有命令行参数：
 
 | 参数名          |  类型   |  默认值  | 说明                                   |
 |:-------------|:-----:|:-----:|:-------------------------------------|
@@ -331,7 +345,7 @@ python val.py --data=data --model=ResNet50 --weights=models/weights/teachers/Res
 ### 5.预测
 
 [inference.py](inference.py)是模型预测和集成的脚本，通过终端命令可以集成指令模型的预测结果。
-[快速复现](#2.生成csv预测结果文件)中给出了该脚本的使用示例，脚本的所有命令行参数如下
+[快速复现](#3.生成csv预测结果文件)中给出了该脚本的使用示例，脚本的所有命令行参数如下：
 
 | 参数名          |  类型   |  默认值  | 说明                                   |
 |:-------------|:-----:|:-----:|:-------------------------------------|
