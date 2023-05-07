@@ -350,8 +350,8 @@ python val.py --data=data --model=ResNet50 --weights=models/weights/teachers/Res
 | 参数名          |  类型   |  默认值  | 说明                                   |
 |:-------------|:-----:|:-----:|:-------------------------------------|
 | --data       | Path  |   -   | 数据集路径                                |
-| --models     | Model |   -   | 模型名称，多个模型用逗号隔开                       |
-| --weights    | Path  |   -   | 模型权重路径，多个模型权重用逗号隔开，顺序与模型名称一一对应       |
+| --models     | Model |   -   | 模型名称，多个模型用空格隔开                       |
+| --weights    | Path  |   -   | 模型权重路径，多个模型权重用空格隔开，顺序与模型名称一一对应       |
 | --output     | Path  |   -   | 输出的csv文件路径                           |
 | --device     |  str  | None  | 计算设备，如"cpu"、"cuda"，若为None，则自动选择可用的设备 |
 | --score      | bool  | False | 是否输出各个类别的置信度得分csv文件，如需设为True，直接-s即可  |
