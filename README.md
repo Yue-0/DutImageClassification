@@ -68,6 +68,10 @@ DutImageClassification
 ```shell
 git clone https://github.com/Yue-0/DutImageClassification.git
 cd ./DutImageClassification
+mkdir -p models/weights/students
+mkdir models/weights/teachers
+mkdir -p results/students
+mkdir results/teachers
 ```
 
 本项目的解释器要求Python>=3.8，因为部分代码使用了海象运算符，所以3.8以前的Python版本不能运行本项目。
