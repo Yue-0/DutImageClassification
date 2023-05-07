@@ -136,7 +136,7 @@ weights
 
 ### 3.生成csv预测结果文件
 
-使用以下指令生成用于提交到竞赛服务器的结果文件，生成的文件在results/students/result.csv
+使用以下指令生成用于提交到竞赛服务器的结果文件，生成的文件在results/students/result.csv：
 
 ```shell
 python inference.py --data data --models ConvNextNano ResNet26 RepVgg --weights \
@@ -146,7 +146,7 @@ models/weights/students/RepVgg/best.pt \
 --output results/students/result.csv
 ```
 
-使用以下指令生成用于提交作业的得分结果文件，生成的文件在results/students/score.csv
+使用以下指令生成用于提交作业的得分结果文件，生成的文件在results/students/score.csv：
 
 ```shell
 python inference.py -s --data data --models ConvNextNano ResNet26 RepVgg --weights \
@@ -156,7 +156,7 @@ models/weights/students/RepVgg/best.pt \
 --output results/students/score.csv
 ```
 
-使用以下指令生成Public精度为80.413%的结果文件，生成的文件在results/teachers/ensemble.csv，**该结果不能用于提交**
+使用以下指令生成Public精度为80.413%的结果文件，生成的文件在results/teachers/ensemble.csv，**该结果不能用于提交**：
 
 ```shell
 python inference.py --data data --models ConvNextTiny ResNet50 SwinTransformerT --weights \
