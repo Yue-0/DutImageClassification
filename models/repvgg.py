@@ -26,7 +26,6 @@ class RepVggBlock(nn.Module):
 
 
 class ConvNet(nn.Module):
-    """7.89M params, 807.59M FLOPs"""
     def __init__(self, num_classes: int):
         super(ConvNet, self).__init__()
         self.relu = nn.ReLU(True)
@@ -65,7 +64,6 @@ class ConvNet(nn.Module):
 
 
 class RepVgg(ConvNet):
-    """7.62M params, 713.09M FLOPs"""
     def __init__(self, num_classes: int, cnn: ConvNet = None):
         super(RepVgg, self).__init__(num_classes)
         self.conv1 = nn.Conv2d(3, 64, 3, 1, 1)
@@ -107,13 +105,14 @@ class RepVgg(ConvNet):
 
 if __name__ == "__main__":
     from thop import profile
-    model1 = ConvNet(50)
+
     inputs = torch.randn(1, 3, 128, 128)
-    # model1(inputs)
-    # model2 = RepVgg(50, model1)
+
+    model1 = ConvNet(50)
+    model1(inputs)
+    model2 = RepVgg(50, model1)
     # x1, x2 = model1(inputs), model2(inputs)
     # print((x1 - x2).mean().item())
-    # print(x1), print(x2)
 
-    flops, params = profile(model1, (inputs,))
+    flops, params = profile(model2, (inputs,))
     print("{:.2f}M, {:.2f}M FLOPs".format(params / 1e6, flops / 1e6))

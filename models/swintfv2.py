@@ -5,7 +5,6 @@ __author__ = "YueLin"
 
 
 class SwinTransformerN(swin_transformer.SwinTransformer):
-    """7.42M params, 377.70M FLOPs"""
     def __init__(self, num_classes: int):
         super(SwinTransformerN, self).__init__(
             embed_dim=64,
@@ -34,7 +33,7 @@ SwinTransformerT = swin_transformer_t
 if __name__ == "__main__":
     from torch import randn
     from thop import profile
-    model = SwinTransformerT(50)
+    model = SwinTransformerN(50)
     inputs = randn(1, 3, 128, 128)
     flops, params = profile(model, (inputs,))
     print("{:.2f}M, {:.2f}M FLOPs".format(params / 1e6, flops / 1e6))

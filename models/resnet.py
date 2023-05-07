@@ -49,7 +49,6 @@ class Res3Blocks(nn.Module):
 
 
 class ResNet26(nn.Module):
-    """7.95M params, 746.26M FLOPs"""
     def __init__(self, num_classes: int):
         super(ResNet26, self).__init__()
         self.conv = nn.Sequential(

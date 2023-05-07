@@ -5,7 +5,6 @@ __author__ = "YueLin"
 
 
 class ConvNextNano(convnext.ConvNeXt):
-    """7.43M params, 576.71M FLOPs"""
     def __init__(self, num_classes: int):
         blocks = [
             convnext.CNBlockConfig(64, 128, 3),
