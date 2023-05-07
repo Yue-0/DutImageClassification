@@ -1,0 +1,11 @@
+data/val
+data/test
+data/train
+data/van
+data/anime
+data/sketch
+models/weights/students/*
+models/weights/teachers/*
+results/sutdents/*
+results/teachers/*
+test_score.csv
