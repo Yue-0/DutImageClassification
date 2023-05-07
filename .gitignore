@@ -6,6 +6,6 @@ data/anime
 data/sketch
 models/weights/students/*
 models/weights/teachers/*
-results/sutdents/*
+results/students/*
 results/teachers/*
 test_score.csv
