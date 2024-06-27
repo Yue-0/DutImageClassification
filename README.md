@@ -78,14 +78,13 @@ mkdir results/teachers
 
 本项目的依赖库列表在[requirements](requirements.txt)中列出，包括：
 
-* Thop >= 0.1.1
-* NumPy >= 1.23.5
-* OpenCV >= 4.5.5
-* PyTorch >= 1.13.0
-* PaddleHub >= 2.3.1
-* TorchVision >= 0.14.0
+* Thop == 0.1.1
+* NumPy == 1.23.5
+* OpenCV == 4.5.5
+* PyTorch == 1.13.0
+* PaddleHub == 2.3.1
+* TorchVision == 0.14.0
 
-项目对各个依赖库的版本没有太严格的要求，不要太旧即可，上面列出的是我使用的版本。
 使用以下命令一键安装依赖库：
 
 ```shell
